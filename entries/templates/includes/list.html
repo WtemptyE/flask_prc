@@ -1,0 +1,5 @@
+{% for entry in object_list.items %}
+    <ul>
+        <li><a href="{{ url_for('entries.detail', slug=entry.slug) }}">{{ entry.title }}</a></li>
+    </ul>
+{% endfor %}

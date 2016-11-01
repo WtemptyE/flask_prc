@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}Tags{% endblock %}
+
+{% block content_title %}Tags{% endblock %}
+
+{% block content %}
+<ul>
+    {% for tag in object_list.items %}
+    <li><a href="{{ url_for('entries.tag_detail', slug=tag.slug)}}">{{ tag.name }}</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}
+
+{% block sidebar %}
+<form class="form-inline well" method="get" role="form">
+    <div class="input-group">
+        <input class="form-control input-xs" name="q" placeholder="Search..." value="{{ request.args.get('q', '') }}" />   
+        <span class="input-group-btn">  
+            <button class="btn btn-default" type="submit">Go</button>
+        </span>
+    </div>
+</form>
+{% endblock %}

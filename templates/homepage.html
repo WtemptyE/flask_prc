@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content_title %}Welcome to my blog{% endblock %}
+
+{% block content %}
+    {% if number %}
+    <p>Your number is {{ number|int }}
+        <ul>
+        {% for i in range(number|int) %}
+            {% if i is divisibleby 2 %}
+                <li>{{ i }}</li>
+            {% endif %}
+        {% endfor %}
+        </ul>
+    {% else %}
+    <p>Your name is {{ name|default('<unknown>', True) }}.</p>
+    {% endif %}
+{% endblock %}

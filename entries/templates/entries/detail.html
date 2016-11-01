@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}{{ entry.title }}{% endblock %}
+
+{% block content_title %}{{ entry.title }}{% endblock %}
+
+{% block sidebar %}
+<ul class="well nav nav-list">
+    <li><h4>Tags</h4></li>
+    {% for tag in entry.tags %}
+        <li><a href="{{ url_for('entries.tag_detail', slug=tag.slug) }}">{{ tag.name }}</a></li>
+    {% endfor %}
+    {% if g.user == entry.author %}
+    <li><h4>Action</h4></li>
+    <li><h5><a href="{{ url_for('entries.edit', slug=entry.slug) }}">Edit</a></h5></li>
+    <li><h5><a href="{{ url_for('entries.delete', slug=entry.slug) }}">Delete</a></h5></li>
+    {% endif %}
+</ul>
+
+<p>Published {{ entry.created_timestamp.strftime('%m/%d/%Y') }}</p>
+{% endblock %}
+
+{% block content %}
+    {{ entry.body }}
+
+    <h4 id="comment-form">Submit a comment</h4>
+    {% include "includes/comment_form.html" %}
+{% endblock %}

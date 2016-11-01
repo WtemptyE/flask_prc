@@ -1,0 +1,19 @@
+{% from "macros/form_field.html" import form_field %}
+<form action="/api/comment" class="form form-horizontal" id="comment-form" method="post">
+    {{ form_field(form.name) }}
+    {{ form_field(form.email) }}
+    {{ form_field(form.url) }}
+    {{ form_field(form.body) }}
+    {{ form.entry_id() }}
+    <div class="form-group">
+        <div class="col-sm-offset-3 col-sm-9">
+            <button type="Submit" class="btn btn-default">Submit</button>
+        </div>
+    </div>
+</form>
+{% block extra_scripts %}
+<script type="text/javascript" src="{{ url_for('static', filename='js/comment.js') }}"></script>
+<script type="text/javascript">
+    $(function() {Comments.bindHandler();});
+</script>
+{% endblock %}
